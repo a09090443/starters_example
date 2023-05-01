@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: example
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /example
+
+# web-service-spring-boot-starter
+web:
+  resource:
+    pathPattern: /static/** # 靜態資源 Uri
+    location: /WEB-INF/static/ # 靜態資源對應目錄，預設是在 /WEB-INF 目錄下
+  jsp:
+    enable: true # jsp page 開關
+    viewNames: jsp/* # jsp 對應 uri
+    stuff: .jsp # jsp 副檔名
+  thymeleaf:
+    enable: true # thymeleaf page 開關
+    viewNames: html/*, thymeleaf/* # thymeleaf 對應 uri
+    stuff: .html # thymeleaf 副檔名
+    templateMode: HTML # thymeleaf 模式
