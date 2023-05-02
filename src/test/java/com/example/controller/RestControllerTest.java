@@ -15,13 +15,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @Slf4j
 @AutoConfigureMockMvc
-public class RestControllerTest extends TestBase {
+class RestControllerTest extends TestBase {
 
   @Autowired
   private MockMvc mockMvc;
 
   @Test
-  public void sayHelloTest() throws Exception {
+  void sayHelloTest() throws Exception {
     this.mockMvc.perform(get("/rest/sayHello?name=John")).andDo(print()).andExpect(status().isOk())
         .andExpect(content().string(containsString("Hello,  John!")));
   }
