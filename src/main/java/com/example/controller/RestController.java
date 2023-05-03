@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/rest")
 public class RestController {
 
-    private ExampleService exampleService;
+    private final ExampleService exampleService;
 
     @Autowired
     public RestController(ExampleService exampleService){
