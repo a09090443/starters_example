@@ -23,3 +23,10 @@ web:
     viewNames: /*, html/*, thymeleaf/* # thymeleaf 對應 uri
     stuff: .html # thymeleaf 副檔名
     templateMode: HTML # thymeleaf 模式
+  # web-service-spring-boot-starter
+  service:
+    uri-mapping: /webservice/* # web service 對應 Uri，http://localhost:8080/{spring.application.name}/webservice?wsdl
+    map:
+      example:
+        beanName: exampleWebServiceImpl # example 資源對應的 bean
+        uri-mapping: /example # web service 資源對應 Uri，http://localhost:8080/{spring.application.name}/webservice/example?wsdl
