@@ -20,6 +20,6 @@ web:
     stuff: .jsp # jsp 副檔名
   thymeleaf:
     enable: true # thymeleaf page 開關
-    viewNames: html/*, thymeleaf/* # thymeleaf 對應 uri
+    viewNames: /*, html/*, thymeleaf/* # thymeleaf 對應 uri
     stuff: .html # thymeleaf 副檔名
     templateMode: HTML # thymeleaf 模式
