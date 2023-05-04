@@ -29,8 +29,8 @@ public class ExampleWebServiceTest {
 //            e.printStackTrace();
 //        }
 
-        WebServiceClientUtil clientUtil = new WebServiceClientUtil("http://127.0.0.1:8080/example/webservice/example?wsdl",
-                "helloWorld",new Object[]{"John"});
+        WebServiceClientUtil clientUtil = new WebServiceClientUtil("http://127.0.0.1:8080/example/webservice/user?wsdl",
+                "getUser",new Object[]{"John"});
         Object[] test = clientUtil.invoke();
         System.out.println(test);
     }
