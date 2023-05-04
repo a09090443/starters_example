@@ -2,7 +2,10 @@ package com.example.webservice;
 
 import com.zipe.model.User;
 import com.zipe.util.WebServiceClientUtil;
+import javax.xml.namespace.QName;
+import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 
 /**
  * @author : Gary Tsai
@@ -15,6 +18,7 @@ public class ExampleWebServiceTest {
             ExampleWebServiceTest exampleWebServiceTest = new ExampleWebServiceTest();
             exampleWebServiceTest.getUserByProxy();
             exampleWebServiceTest.getUserByClientUtil();
+            exampleWebServiceTest.getUserNameByDynamicClient();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,8 +49,21 @@ public class ExampleWebServiceTest {
         WebServiceClientUtil clientUtil = new WebServiceClientUtil(
             WEB_SERVICE_URL, "getUser", new Object[]{"01"});
         Object[] result = clientUtil.invoke();
-        for (Object o : result) {
-            System.out.println(o);
+        System.out.println("返回結果:" + result[0]);
+    }
+    private void getUserNameByDynamicClient() throws Exception {
+        try {
+            // 代理工廠
+            JaxWsDynamicClientFactory jaxWsDynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
+            // 設置代理地址
+            Client client = jaxWsDynamicClientFactory.createClient(WEB_SERVICE_URL);
+            // 設置targetNamespace 和 methodName
+            QName qname = new QName("http://service.example.com", "getUserName");
+            Object[] result = client.invoke(qname, "01");
+
+            System.out.println("返回結果:" + result[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

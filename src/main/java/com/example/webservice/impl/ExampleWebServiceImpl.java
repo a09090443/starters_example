@@ -44,7 +44,8 @@ public class ExampleWebServiceImpl implements ExampleWebService {
 
     @Override
     public String getUserName(String userId) {
-        return "userId為：" + userId;
+        logger.info("userId為：{}", userMap.get(userId).getUserName());
+        return userMap.get(userId).getUserName();
     }
 
     @Override
