@@ -3,6 +3,22 @@ spring:
     name: example
   main:
     allow-bean-definition-overriding: true
+  config:
+    import: classpath:resources.properties
+  # db-spring-boot-starter
+  jpa:
+    hibernate:
+      ddl-auto: create # service 啟動時 database 自動建立機制 (create, create-drop, update, validate)
+    show-sql: false # 顯示 Sql 語法
+    base:
+      packages: com.example # Jpa repository package
+  h2:
+    console:
+      enabled: true
+#  sql:
+#    init:
+#      schema-locations: classpath:init/schema.sql
+#      data-locations: classpath:init/data.sql
 
 server:
   port: 8080
