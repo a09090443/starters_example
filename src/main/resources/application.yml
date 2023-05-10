@@ -5,6 +5,10 @@ spring:
     allow-bean-definition-overriding: true
   config:
     import: classpath:resources.properties
+  # job-spring-boot-starter
+  quartz:
+    enable: true # 是否開啟 Job 功能
+    job-store-type: memory #jdbc-資料庫、memory 記憶體
   # db-spring-boot-starter
   jpa:
     hibernate:
