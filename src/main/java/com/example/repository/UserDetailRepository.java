@@ -9,4 +9,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserDetailRepository extends JpaRepository<UserDetail, String> {
+
+  UserDetail findByName(String name);
+
+  UserDetail findByGender(String gender);
 }
