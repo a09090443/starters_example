@@ -51,3 +51,20 @@ web:
       example:
         beanName: exampleWebServiceImpl # example 資源對應的 bean
         uri-mapping: /example # web service 資源對應 Uri，http://localhost:8080/{spring.application.name}/webservice/example?wsdl
+
+# logon-spring-boot-starter(Basic login user/password:admin/admin)
+security:
+  enable: true # security 開關
+  verification-type: basic #basic 內建基本驗證(帳密:admin/admin)，ldap LDAP驗證，custom 自訂驗證(需定義 custom-bean-name)
+  custom-bean-name: test # 自訂登入方式，請填入 bean name
+  record-log-enable: true # 紀錄事件 Log
+  custom-record-log-bean: logonLogRecord # 自訂使用者登出入紀錄，record-log-enable 須為 true
+  allow-uris: /resources/**,/static/**,/webservice/** # 設定不須授權即可登入的 Uri
+  #  login-uri: /login # 自訂登入頁面，預設使用 security 自己的 login page
+  login-success-uri: /jsp # 登入成功後的頁面
+  login-failure-uri: /login # 登入失敗的頁面
+  ldap:
+    ip: 127.0.0.1 # Ldap 主機
+    domain: ldap.zipe.com # Ldap domain name
+    port: 389 # Ldap port
+    dn: DC=zipe,DC=local # Ldap dn
