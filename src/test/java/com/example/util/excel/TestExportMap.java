@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-public class TestExportMap {
+class TestExportMap {
 
   @Test
-  public void exportXls() throws IOException {
+  void exportXls() throws IOException {
     List<Map<String, Object>> list = new ArrayList<>();
     Map<String, Object> map = new LinkedHashMap<>();
     map.put("name", "");

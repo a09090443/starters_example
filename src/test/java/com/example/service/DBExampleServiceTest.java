@@ -1,13 +1,15 @@
 package com.example.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.example.base.TestBase;
 import com.example.model.UserMain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class DBExampleServiceTest extends TestBase {
+class DBExampleServiceTest extends TestBase {
 
-  private DBExampleService dbExampleService;
+  private final DBExampleService dbExampleService;
 
   @Autowired
   DBExampleServiceTest(DBExampleService dbExampleService){
@@ -15,8 +17,8 @@ public class DBExampleServiceTest extends TestBase {
   }
 
   @Test
-  public void findUserMainByNameTest(){
+  void findUserMainByNameTest(){
     UserMain userMain = dbExampleService.getUserMainByName("Gary");
-    System.out.println(userMain);
+    assertEquals("Gary", userMain.getName());
   }
 }

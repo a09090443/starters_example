@@ -12,10 +12,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-public class TestExportBean {
+class TestExportBean {
 
   @Test
-  public void exportXls() throws IOException {
+  void exportXls() throws IOException {
     //用排序的Map且Map的鍵應與ExcelCell註解的index對應
     Map<String, String> map = new LinkedHashMap<>();
     map.put("a", "姓名");
