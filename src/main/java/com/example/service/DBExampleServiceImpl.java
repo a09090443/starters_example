@@ -5,7 +5,6 @@ import com.example.model.UserMain;
 import com.example.repository.UserDetailRepository;
 import com.example.repository.UserMainRepository;
 import com.zipe.base.annotation.DS;
-import com.zipe.base.annotation.DynamicDS;
 import com.zipe.base.database.DataSourceHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
