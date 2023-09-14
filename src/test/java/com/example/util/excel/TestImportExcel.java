@@ -10,10 +10,10 @@ import java.util.Collection;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-public class TestImportExcel {
+class TestImportExcel {
 
   @Test
-  public void importXls() throws FileNotFoundException {
+  void importXls() throws FileNotFoundException {
     File f = new File("d:/tmp/test1.xls");
 
     ExcelLogs logs = new ExcelLogs();
@@ -26,7 +26,7 @@ public class TestImportExcel {
   }
 
   @Test
-  public void importXlsx() throws FileNotFoundException {
+  void importXlsx() throws FileNotFoundException {
     File f = new File("d:/tmp/test2.xlsx");
     InputStream inputStream = new FileInputStream(f);
 
