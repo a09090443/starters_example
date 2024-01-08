@@ -33,7 +33,7 @@
 
     <!-- 只用保存輸出error級別的日誌 -->
     <appender name="file.error"
-      class="ch.qos.logback.core.rolling.RollingFileAppender">
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${log.base}/${log.moduleName}_err.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <FileNamePattern>${log.base}/archive/${log.moduleName}_err_%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>
@@ -53,7 +53,7 @@
 
     <!--  -->
     <appender name="file.print"
-      class="ch.qos.logback.core.rolling.RollingFileAppender">
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${log.base}/${log.moduleName}_print.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <FileNamePattern>${log.base}/archive/${log.moduleName}_print_%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>

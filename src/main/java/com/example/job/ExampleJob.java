@@ -10,8 +10,12 @@ import org.quartz.JobExecutionContext;
  */
 @Slf4j
 public class ExampleJob extends QuartzJobFactory {
+
+    public ExampleJob() {
+    }
+
     @Override
-    protected void executeJob(JobExecutionContext jobExecutionContext) {
+    protected void executeJob(JobExecutionContext jobExecutionContext) throws Exception {
         log.info("{}執行, 當前的時間:{}", this.getClass(), DateTimeUtils.getDateNow());
     }
 }

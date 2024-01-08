@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.6</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
   <groupId>com.example</groupId>
-  <artifactId>starters_example</artifactId>
+  <artifactId>example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>example</name>
   <description>Demo project for Spring Boot</description>
   <properties>
-    <java.version>17</java.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <env>dev</env>
     <jaxws-ri.version>4.0.1</jaxws-ri.version>
     <webjars-bootstrap.version>5.2.3</webjars-bootstrap.version>
     <webjars-jquery.version>3.6.4</webjars-jquery.version>
     <webjars-locator.version>0.46</webjars-locator.version>
-    <zipe.spring.starter.version>3.0.6.1</zipe.spring.starter.version>
+    <spring-boot-version>3.2.1</spring-boot-version>
+    <zipe.spring.starter.version>3.2.1.1</zipe.spring.starter.version>
   </properties>
 
   <repositories>
@@ -36,13 +32,54 @@
     </repository>
   </repositories>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webflux</artifactId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>asm</artifactId>
+          <groupId>org.ow2.asm</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-ri</artifactId>
+      <version>${jaxws-ri.version}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>
@@ -61,6 +98,13 @@
       <version>${webjars-locator.version}</version>
     </dependency>
 
+    <!-- JSTL -->
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-jasper</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>com.zipe</groupId>
       <artifactId>base-spring-boot-starter</artifactId>
@@ -69,19 +113,7 @@
 
     <dependency>
       <groupId>com.zipe</groupId>
-      <artifactId>web-spring-boot-starter</artifactId>
-      <version>${zipe.spring.starter.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.zipe</groupId>
-      <artifactId>web-service-spring-boot-starter</artifactId>
-      <version>${zipe.spring.starter.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.zipe</groupId>
-      <artifactId>job-spring-boot-starter</artifactId>
+      <artifactId>logon-spring-boot-starter</artifactId>
       <version>${zipe.spring.starter.version}</version>
     </dependency>
 
@@ -93,40 +125,20 @@
 
     <dependency>
       <groupId>com.zipe</groupId>
-      <artifactId>logon-spring-boot-starter</artifactId>
+      <artifactId>web-spring-boot-starter</artifactId>
       <version>${zipe.spring.starter.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>asm</artifactId>
-          <groupId>org.ow2.asm</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <!-- Compile jsp -->
-    <dependency>
-      <groupId>org.apache.tomcat.embed</groupId>
-      <artifactId>tomcat-embed-jasper</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <!-- H2 datababse -->
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>runtime</scope>
+      <groupId>com.zipe</groupId>
+      <artifactId>job-spring-boot-starter</artifactId>
+      <version>${zipe.spring.starter.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <optional>true</optional>
+      <groupId>com.zipe</groupId>
+      <artifactId>web-service-spring-boot-starter</artifactId>
+      <version>${zipe.spring.starter.version}</version>
     </dependency>
 
     <dependency>
