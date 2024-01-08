@@ -16,6 +16,7 @@
     <webjars-bootstrap.version>5.2.3</webjars-bootstrap.version>
     <webjars-jquery.version>3.6.4</webjars-jquery.version>
     <webjars-locator.version>0.46</webjars-locator.version>
+    <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     <spring-boot-version>3.2.1</spring-boot-version>
     <zipe.spring.starter.version>3.2.1.1</zipe.spring.starter.version>
   </properties>
@@ -156,14 +157,77 @@
         </includes>
         <filtering>false</filtering>
       </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/**</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
     </resources>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-    </plugins>
 
+      <!--引入第三方jar 包-->
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${maven-war-plugin.version}</version>
+        <configuration>
+          <webResources>
+            <resource>
+              <directory>${basedir}/src/main/lib</directory>
+              <targetPath>WEB-INF/lib</targetPath>
+              <includes>
+                <include>**/*.jar</include>
+              </includes>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>rename-file</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>rename</goal>
+            </goals>
+            <configuration>
+              <sourceFile>${project.build.outputDirectory}/resources_${env}.properties</sourceFile>
+              <destinationFile>${project.build.outputDirectory}/resources.properties</destinationFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>delete-files</id>
+            <phase>compile</phase>
+            <configuration>
+              <target>
+                <delete includeemptydirs="true">
+                  <fileset dir="${project.build.directory}/classes">
+                    <include name="**/resources_*.properties"/>
+                  </fileset>
+                </delete>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
 </project>
