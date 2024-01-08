@@ -31,7 +31,7 @@ public class RestExampleController {
 
     @GetMapping("/sayHello")
     public String sayHello(String name) {
-        System.out.println("Timstamp:"+ Timestamp.valueOf(DateTimeUtils.getDateNow()));
+        log.info("Timestamp:{}", Timestamp.valueOf(DateTimeUtils.getDateNow()));
         return "Hello, " + name + "!";
     }
 
