@@ -10,7 +10,7 @@ public class WebController {
 
     @GetMapping({"/thymeleaf"})
     public String thymeleaf() {
-        return "th/hello";
+        return "html/hello";
     }
 
     @GetMapping({"/jsp"})
