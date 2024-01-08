@@ -1,23 +1,25 @@
 package com.example.webservice.impl;
 
 import com.example.webservice.ExampleUserService;
+import com.example.webservice.dto.UserRequest;
+import com.example.webservice.dto.UserResponse;
 import com.zipe.model.User;
+import jakarta.jws.WebService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import javax.jws.WebService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 @Slf4j
 @WebService(serviceName = "ExampleUserService",//對外發布的服務名
-        targetNamespace = "http://service.exmaple.com/",//指定你想要的名稱空間，通常使用使用包名反轉
+        targetNamespace = "http://service.user.com/",//指定你想要的名稱空間，通常使用使用包名反轉
         endpointInterface = "com.example.webservice.ExampleUserService")//服務接口全路徑, 指定做SEI（Service EndPoint Interface）服務端點接口
 @Component
 public class ExampleUserServiceImpl implements ExampleUserService {
 
-    private Map<String, User> userMap = new HashMap<String, User>();
+    private Map<String, User> userMap = new HashMap<>();
 
     public ExampleUserServiceImpl() {
         log.info("向實體類插入數據");
@@ -52,9 +54,14 @@ public class ExampleUserServiceImpl implements ExampleUserService {
     }
 
     @Override
-    public User getUser(String name) {
+    public UserResponse getUser(UserRequest userRequest) {
         log.info("userMap是:{}", userMap);
-        return userMap.get(name);
+        UserResponse response = new UserResponse();
+        User user = userMap.get(userRequest.getName());
+        response.setName(user.getUserName());
+        response.setUserId(user.getUserId());
+        response.setEmail(user.getEmail());
+        return response;
     }
 
 }

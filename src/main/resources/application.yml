@@ -46,15 +46,32 @@ web:
         uri-mapping: /exampleUserService
     uri-mapping: /webservice/* # web service 對應 Uri，http://localhost:8080/webservice?wsdl
 
+security:
+  enable: false
+  verification-type: basic #basic 內建基本驗證，ldap LDAP驗證，custom 自訂驗證(需定義 custom-bean-name)
+  custom-bean-name:
+  record-log-enable: false
+  custom-record-log-bean:
+  allow-uris: /resources/**,/static/**
+  login-uri: /login #空值則預設為 spring basic login form
+  login-success-uri: /dashboard
+  login-failure-uri: /login
+  csrf-enabled: false
+  ldap:
+    ip: 127.0.0.1
+    domain: ldap.zipe.com
+    port: 389
+    dn: DC=zipe,DC=local
+
 # base-spring-boot-starter
 mail:
   debug-enable: true # 是否開啟 debug 模式
-  username: webcomm # Username
-  pa55word: webcomm # Password
+  username: zipe # Username
+  pa55word: 1234 # Password
   enable-encrypt: false # 密碼是否有加密
   host: 127.0.0.1 # Mail server ip
   port: 25 # Mail server port
   smtp-auth-enable: true # 是否開啟 smtp 認證
-  sender: webcomm@localhost.com # 寄送者 mail address
+  sender: zipe@localhost.com # 寄送者 mail address
   transport-protocol: smtp # 郵件傳輸協定
   smtp-start-tls-enable: true # Smtp tls 加密是否開啟

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property resource="resources.properties"/>
     <!-- 盡量別用絕對路徑，如果帶參數不同容器路徑解釋可能不同,以下配置參數在resources.properties裡 -->
     <springProperty scope="context" name="log.root.level" source="log.root.level"/> <!-- 日誌級別 -->
     <springProperty scope="context" name="log.other.level" source="log.other.level"/> <!-- 其他日誌級別 -->
