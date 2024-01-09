@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.dto.CommonMessageReq;
+import com.example.entity.InfoEntity;
+import com.example.entity.UserEntity;
 import com.example.model.User;
 import com.example.service.ExampleService;
 import com.zipe.annotation.ResponseResultBody;
@@ -41,15 +43,13 @@ public class RestExampleController {
     }
 
     @GetMapping("/getDataUsers")
-    public String getDataUsers() {
-        exampleService.findExample1Data();
-        return HttpStatus.OK.getReasonPhrase();
+    public List<UserEntity> getDataUsers() {
+        return exampleService.findExample1Data();
     }
 
     @GetMapping("/getDataInfos")
-    public String getDataInfos() {
-        exampleService.findExample2Data();
-        return HttpStatus.OK.getReasonPhrase();
+    public InfoEntity getDataInfos() {
+        return exampleService.findExample2Data();
     }
 
     @GetMapping("/getDb2Test")
@@ -59,9 +59,8 @@ public class RestExampleController {
     }
 
     @GetMapping("/getJdbcData")
-    public String getJdbcData(@RequestParam String name) {
-        exampleService.findByNativeSQL(name);
-        return HttpStatus.OK.getReasonPhrase();
+    public UserEntity getJdbcData(@RequestParam String name) {
+        return exampleService.findByNativeSQL(name);
     }
 
     @PostMapping(value = "/passXml", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

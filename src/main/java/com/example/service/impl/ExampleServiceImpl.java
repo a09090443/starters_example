@@ -56,16 +56,18 @@ public class ExampleServiceImpl implements ExampleService {
         );
     }
 
-    @DS(value = "example2")
-    public void findExample1Data() {
+    @DS(value = "example1")
+    public List<UserEntity> findExample1Data() {
         List<UserEntity> list = userRepository.findAll();
         list.forEach(data -> log.debug(data.toString()));
+        return list;
     }
 
-    @DS(value = "example1")
-    public void findExample2Data() {
-        InfoEntity info = infoRepository.findByGender("aaa");
-        System.out.println(info);
+    @DS(value = "example2")
+    public InfoEntity findExample2Data() {
+        InfoEntity info = infoRepository.findByGender("M");
+        log.info(info.toString());
+        return info;
     }
 
     @Override
@@ -76,12 +78,13 @@ public class ExampleServiceImpl implements ExampleService {
 
     @Override
     @DS(value = "example2")
-    public void findByNativeSQL(String name) {
+    public UserEntity findByNativeSQL(String name) {
         ResourceEnum resource = ResourceEnum.SQL.getResource("FIND_USER_BY_NAME");
         Map<String, Object> params = new HashMap<>();
         params.put("name", name);
         UserEntity user = exampleJdbc.queryForBean(resource, params, UserEntity.class);
         log.debug(user.toString());
+        return user;
     }
 
     @Override

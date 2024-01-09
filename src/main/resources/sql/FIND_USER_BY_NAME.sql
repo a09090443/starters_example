@@ -1,3 +1,3 @@
-SELECT *
+SELECT id, username, password
 FROM user u
-WHERE u.Name = :name
+WHERE u.username = :name

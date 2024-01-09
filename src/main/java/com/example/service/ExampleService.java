@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.entity.InfoEntity;
+import com.example.entity.UserEntity;
 import com.example.model.User;
 
 import java.util.List;
@@ -11,13 +13,13 @@ public interface ExampleService {
 
     List<User> findUsers();
 
-    void findExample1Data();
+    List<UserEntity> findExample1Data();
 
-    void findExample2Data();
+    InfoEntity findExample2Data();
 
     void findDb2Data();
 
-    void findByNativeSQL(String name);
+    UserEntity findByNativeSQL(String name);
 
     String testException();
 }
