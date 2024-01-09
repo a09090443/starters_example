@@ -1,15 +1,13 @@
 package com.example.controller;
 
 import com.example.dto.CommonMessageReq;
-import com.example.entity.InfoEntity;
-import com.example.entity.UserEntity;
-import com.example.model.User;
 import com.example.service.ExampleService;
 import com.zipe.annotation.ResponseResultBody;
 import com.zipe.util.time.DateTimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -38,18 +35,18 @@ public class RestExampleController {
     }
 
     @GetMapping("/getUsers")
-    public List<User> getUsers() {
-        return exampleService.findUsers();
+    public ResponseEntity getUsers() {
+        return ResponseEntity.ok().body(exampleService.findUsers());
     }
 
     @GetMapping("/getDataUsers")
-    public List<UserEntity> getDataUsers() {
-        return exampleService.findExample1Data();
+    public ResponseEntity getDataUsers() {
+        return ResponseEntity.ok().body(exampleService.findExample1Data());
     }
 
     @GetMapping("/getDataInfos")
-    public InfoEntity getDataInfos() {
-        return exampleService.findExample2Data();
+    public ResponseEntity getDataInfos() {
+        return ResponseEntity.ok().body(exampleService.findExample2Data());
     }
 
     @GetMapping("/getDb2Test")
@@ -59,8 +56,8 @@ public class RestExampleController {
     }
 
     @GetMapping("/getJdbcData")
-    public UserEntity getJdbcData(@RequestParam String name) {
-        return exampleService.findByNativeSQL(name);
+    public ResponseEntity getJdbcData(@RequestParam String name) {
+        return ResponseEntity.ok().body(exampleService.findByNativeSQL(name));
     }
 
     @PostMapping(value = "/passXml", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
