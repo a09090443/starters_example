@@ -6,17 +6,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Gary.Tsai
- */
+import java.util.Map;
+
 @Slf4j
 @Component
-public class ExampleJob extends QuartzJobFactory {
-
-    public ExampleJob() {}
-
+public class ExampleDbJob extends QuartzJobFactory {
     @Override
-    protected void executeJob(JobExecutionContext jobExecutionContext) throws Exception {
+    protected void executeJob(JobExecutionContext jobExecutionContext) {
+        Map<String, Object> jobMap = jobExecutionContext.getJobDetail().getJobDataMap();
         log.info("{}執行, 當前的時間:{}", this.getClass(), DateTimeUtils.getDateNow());
+        jobMap.forEach(
+                (k, v) -> log.info("參數名稱{}, 參數內容{}", k, v)
+        );
     }
 }
