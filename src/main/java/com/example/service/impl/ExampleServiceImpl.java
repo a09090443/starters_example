@@ -56,25 +56,19 @@ public class ExampleServiceImpl implements ExampleService {
     @DS(value = "example2")
     public void findExample1Data() {
         List<UserEntity> list = userRepository.findAll();
-        list.forEach(data -> {
-            log.debug(data.toString());
-        });
+        list.forEach(data -> log.debug(data.toString()));
     }
 
     @DS(value = "example1")
     public void findExample2Data() {
         List<InfoEntity> list = infoRepository.findAll();
-        list.forEach(data -> {
-            log.debug(data.toString());
-        });
+        list.forEach(data -> log.debug(data.toString()));
     }
 
     @Override
     public void findDb2Data() {
         List<AmlWhiteListEntity> list = amlWhiteListRepository.findAll();
-        list.forEach(data -> {
-            log.debug(data.toString());
-        });
+        list.forEach(data -> log.debug(data.toString()));
     }
 
     @Override

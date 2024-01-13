@@ -53,7 +53,7 @@ security:
   record-log-enable: false
   custom-record-log-bean:
   allow-uris: /resources/**,/static/**
-  login-uri: /login #空值則預設為 spring basic login form
+#  login-uri: /login #空值則預設為 spring basic login form
   login-success-uri: /dashboard
   login-failure-uri: /login
   csrf-enabled: false

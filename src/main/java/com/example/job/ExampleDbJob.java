@@ -14,9 +14,7 @@ public class ExampleDbJob extends QuartzJobFactory {
         Map<String, Object> jobMap = jobExecutionContext.getJobDetail().getJobDataMap();
         log.info("{}執行, 當前的時間:{}", this.getClass(), DateTimeUtils.getDateNow());
         jobMap.forEach(
-                (k, v) -> {
-                    log.info("參數名稱{}, 參數內容{}", k, v);
-                }
+                (k, v) -> log.info("參數名稱{}, 參數內容{}", k, v)
         );
     }
 }
